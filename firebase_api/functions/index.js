@@ -31,7 +31,7 @@ app.get('/hello-world', (req, res) => {
 app.post('/api/create', (req, res) => {
     (async () => {
         try {
-            await db.collection('TestAW').doc('/' + req.body.id + '/')
+            await db.collection('TestAW').doc()
                 .create({
                     name: req.body.name,
                     lastname: req.body.lastname
@@ -98,10 +98,10 @@ app.put('/api/update/:id', (req, res) => {
     (async () => {
         try {
             const document = db.collection('TestAW').doc(req.params.id)
-            
+
             await document.update({
                 name: req.body.name,
-                lastname:req.body.lastname
+                lastname: req.body.lastname
             })
 
             return res.status(200).send();
@@ -118,8 +118,638 @@ app.delete('/api/delete/:id', (req, res) => {
         try {
             const document = db.collection('TestAW').doc(req.params.id)
             await document.delete();
-           
 
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+
+
+
+//********************* SOSList */
+//************* Create */
+
+
+app.post('/api/createSosList', (req, res) => {
+    (async () => {
+        try {
+            await db.collection('SosList').doc()
+                .create({
+                    sosList: req.body.sosList,
+                })
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* ReadAll */
+app.get('/api/readSosList', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('SosList');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        sosList: doc.data().sosList,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Update */
+app.put('/api/updateSosList/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('SosList').doc(req.params.id)
+
+            await document.update({
+                sosList: req.body.sosList,
+            })
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Delete */
+app.delete('/api/deleteSosList/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('SosList').doc(req.params.id)
+            await document.delete();
+
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+
+//********************* AnimalList */
+//************* Create */
+
+
+app.post('/api/createAnimalList', (req, res) => {
+    (async () => {
+        try {
+            await db.collection('AnimalList').doc()
+                .create({
+                    animalList: req.body.animalList,
+                })
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* ReadAll */
+app.get('/api/readAnimalList', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('AnimalList');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        animalList: doc.data().animalList,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Update */
+app.put('/api/updateAnimalList/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('AnimalList').doc(req.params.id)
+
+            await document.update({
+                animalList: req.body.animalList,
+            })
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Delete */
+app.delete('/api/deleteAnimalList/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('AnimalList').doc(req.params.id)
+            await document.delete();
+
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//********************* Institute */
+//************* Create */
+
+
+app.post('/api/createInstitute', (req, res) => {
+    (async () => {
+        try {
+            await db.collection('Institute').doc()
+                .create({
+                    institute: req.body.institute,
+                })
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* ReadAll */
+app.get('/api/readInstitute', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('Institute');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        institute: doc.data().institute,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Update */
+app.put('/api/updateInstitute/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Institute').doc(req.params.id)
+
+            await document.update({
+                institute: req.body.institute,
+            })
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Delete */
+app.delete('/api/deleteInstitute/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Institute').doc(req.params.id)
+            await document.delete();
+
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//********************* Telephone_SOS */
+//************* Create */
+
+
+app.post('/api/createTelephone', (req, res) => {
+    (async () => {
+        try {
+            await db.collection('Telephone_SOS').doc()
+                .create({
+                    Title: req.body.Title,
+                    phonenumber: req.body.phonenumber,
+                })
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* ReadAll */
+app.get('/api/readTelephone', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('Telephone_SOS');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        Title: doc.data().Title,
+                        phonenumber: doc.data().phonenumber,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Update */
+app.put('/api/updateTelephone/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Telephone_SOS').doc(req.params.id)
+
+            await document.update({
+                Title: req.body.Title,
+                phonenumber: req.body.phonenumber,
+            })
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Delete */
+app.delete('/api/deleteTelephone/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Telephone_SOS').doc(req.params.id)
+            await document.delete();
+
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//********************* Users */
+//************* Create */
+
+
+app.post('/api/createUsers', (req, res) => {
+    (async () => {
+        try {
+            await db.collection('Users').doc()
+                .create({
+                    Email: req.body.Email,
+                    Name: req.body.Name,
+                    StudentID: req.body.StudentID,
+                    URL: req.body.URL,
+                })
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* ReadAll */
+app.get('/api/readUsers', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('Users');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        Email: doc.data().Email,
+                        Name: doc.data().Name,
+                        StudentID: doc.data().StudentID,
+                        URL: doc.data().URL,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Update */
+app.put('/api/updateUsers/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Users').doc(req.params.id)
+
+            await document.update({
+                Name: req.body.Name,
+                StudentID: req.body.StudentID,
+            })
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Delete */
+app.delete('/api/deleteUsers/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Users').doc(req.params.id)
+            await document.delete();
+
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//**************************************************************************************** ขั้นTest */
+//********************* First_Aid */
+//************* Create */
+
+
+app.post('/api/createFirst_Aid', (req, res) => {
+    (async () => {
+        try {
+            await db.collection('First_Aid').doc()
+                .create({
+                    Email: req.body.Email,
+                    Name: req.body.Name,
+                    StudentID: req.body.StudentID,
+                    URL: req.body.URL,
+                })
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* ReadAll */
+app.get('/api/readFirst_Aid', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('First_Aid');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        Title: doc.data().Title,
+                        Image: doc.data().Image,
+                        detal: doc.data().detal,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+
+//************* Delete */
+app.delete('/api/deleteFirst_Aid/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('First_Aid').doc(req.params.id)
+            await document.delete();
+
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+
+//**************************************************************************************** ขั้นTest */
+
+//********************* Volunteers */
+//************* Create */
+
+
+app.post('/api/createVolunteers', (req, res) => {
+    (async () => {
+        try {
+            await db.collection('Volunteers').doc()
+                .create({
+                    Email: req.body.Email,
+                    Gender: req.body.Gender,
+                    IdCard: req.body.IdCard,
+                    Name: req.body.Name,
+                    Photo: req.body.Photo,
+                    StudentID: req.body.StudentID,
+                })
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* ReadAll */
+app.get('/api/readVolunteers', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('Volunteers');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        Email: doc.data().Email,
+                        Gender: doc.data().Gender,
+                        IdCard: doc.data().IdCard,
+                        Name: doc.data().Name,
+                        Photo: doc.data().Photo,
+                        StudentID: doc.data().StudentID,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Update */
+app.put('/api/updateVolunteers/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Volunteers').doc(req.params.id)
+
+            await document.update({
+                Name: req.body.Name,
+                StudentID: req.body.StudentID,
+            })
+
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//************* Delete */
+app.delete('/api/deleteVolunteers/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('Volunteers').doc(req.params.id)
+            await document.delete();
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+//********************* AcceptSOS */
+
+//************* ReadAll */
+app.get('/api/readAcceptSOS', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('AcceptSOS');
+            let response = [];
+
+            await query.get().then(querySnapshot => {
+                let docs = querySnapshot.docs;
+
+                for (let doc of docs) {
+                    const selectedItem = {
+                        id: doc.id,
+                        Detail: doc.data().Detail,
+                        Image1: doc.data().Image1,
+                        Image2: doc.data().Image2,
+                        Image3: doc.data().Image3,
+                    }
+                    response.push(selectedItem);
+                }
+                return response;
+
+            })
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+});
+
+
+//************* Delete */
+app.delete('/api/deleteAcceptSOS/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('AcceptSOS').doc(req.params.id)
+            await document.delete();
             return res.status(200).send();
         } catch (error) {
             console.log(error)
