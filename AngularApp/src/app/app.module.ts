@@ -9,6 +9,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { VolunteermenuComponent } from './components/volunteermenu/volunteermenu.component';
+import { PublicmenuComponent } from './components/publicmenu/publicmenu.component';
 
 // Routes
 export const router: Routes = [
@@ -22,7 +25,10 @@ export const router: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    MenuComponent,
+    VolunteermenuComponent,
+    PublicmenuComponent
   ],
   imports: [
     BrowserModule,
