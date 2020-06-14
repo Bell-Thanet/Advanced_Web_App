@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
   
-  constructor() { }
+  constructor(private router:Router, private auth: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -23,9 +24,20 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.login.get('password');
   }
-
-  loginto() {
-    console.log(this.login.value)
+  signin(){
+    console.log(this.login.value);
+    this.auth.signIn(this.login.value).subscribe(
+      data => {
+        if(data.status == true){
+          this.router.navigate(['/menu']);
+        }else{
+          alert('Username or Password is incorrect!');
+        }
+      },
+      err => {
+        console.log(err);
+        alert('Username or Password is incorrect!');
+      });
   }
-
+  
 }

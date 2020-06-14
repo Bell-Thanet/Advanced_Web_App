@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { RegisterService } from 'src/app/services/register.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,16 +18,21 @@ export class RegisterComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required]),
   });
 
-  constructor() { }
+  constructor(private sign: RegisterService) { }
 
   ngOnInit(): void {
     
   }
 
-  createUser(profileForm) {
-    // this.auth.createUser(profileForm.value)
-  }
-
+  signup(){
+    console.log(this.profileForm.value);
+    this.sign.signUp(this.profileForm.value).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
+   
+    }
 
   get email() {
     return this.profileForm.get('email');
@@ -46,27 +52,12 @@ export class RegisterComponent implements OnInit {
   get confirmPassword() {
     return this.profileForm.get('confirmPassword');
   }
-
-
   show: boolean = false;
 
-  onClick() {
-    if (this.profileForm.value.confirmPassword == this.profileForm.value.password) {
-      this.show = false
-    } else {
-      this.show = true
-    }
-  }
-
-  addtoDatabase() {
-    if (this.profileForm.value.firstName != '' && this.profileForm.value.lastName != '' && this.profileForm.value.email != ''
-      && this.profileForm.value.studentID != '' && this.profileForm.value.password != '' && this.profileForm.get('studentID').status == "VALID"
-      && this.profileForm.get('email').status == "VALID" && this.profileForm.value.confirmPassword == this.profileForm.value.password
-    ) {
-      // this.auth.createUser(this.profileForm.value)
-    }
 
 
-  }
+  
+
+  
 
 }

@@ -1,8 +1,11 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 var serviceAccount = require("./permissions.json");
+
+const key = 'MY_KEY';
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -762,6 +765,85 @@ app.delete('/api/deleteAcceptSOS/:id', (req, res) => {
         }
     })();
 });
+
+// Register //
+app.post('/api/register',(req, res) => {
+    (async () => {
+        try {
+            makeHash(req.body.password).then(hashtext => {
+                const playload = {
+                    username: req.body.email,
+                    password: hashtext,
+                }
+                console.log(playload);
+                db.collection('Admin').doc(req.body.email)
+                .create({
+                    Email: req.body.email,
+                    Password: hashtext,
+                    Firstname: req.body.firstName,
+                    LastName: req.body.lastName,
+                    StudentID: req.body.studentID,
+                })
+                return res.status(200).send();
+            })
+           
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send(error)
+        }
+    })();
+    
+});
+const makeHash = async (plainText) => {
+    const result = await bcrypt.hash(plainText, 10);
+    return result;
+}
+
+//login//
+function findUser(username) {
+    return db.collection('Admin').doc(username).get().then(function (doc) {
+        if (doc.exists) return Promise.resolve({username: doc.data().Email, password: doc.data().Password, firstname: doc.data().Firstname, lastname: doc.data().LastName});
+        return Promise.reject("No such document");
+    })
+}
+const compareHash = async (plainText, hashText) => {
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(plainText, hashText, (err, data) => {
+            if (err) {
+                reject(new Error('Error bcryptjs compare'))
+            } else {
+                resolve({ status: data });
+            }
+        });
+    });
+}
+app.post('/api/login',(req, res) => {
+    (async () => {
+        const playload = {
+            username: req.body.email,
+            password: req.body.password,
+        };
+        console.log(playload);
+    try{
+        const result = await findUser(playload.username);
+        console.log(result);
+        const loginStatus = await compareHash(req.body.password, result.password)
+        console.log(loginStatus);
+        const status = loginStatus.status;
+        if (status) {
+            const token = jwt.sign(result, key, { expiresIn: 60 * 5 })
+            res.status(200).json({ result, token, status });
+        } else {
+            res.status(200).json({ status });
+        }
+    } catch (error) {
+        res.status(404).send(error)
+    }
+    
+    })();
+    
+});
+
 
 
 exports.app = functions.https.onRequest(app);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { LocalStorageService } from 'angular-web-storage';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  User: String
+
+  constructor(private router: Router,public local: LocalStorageService) { }
+
 
   ngOnInit(): void {
+    this.User = this.local.get('user').result.firstname+' '+this.local.get('user').result.lastname;
   }
 
   AdminVolunteer() {
