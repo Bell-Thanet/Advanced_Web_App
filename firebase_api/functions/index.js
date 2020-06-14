@@ -433,6 +433,7 @@ app.get('/api/readTelephone', (req, res) => {
 //************* Update */
 app.put('/api/updateTelephone/:id', (req, res) => {
     (async () => {
+        console.log('Update ทำงาน')
         try {
             const document = db.collection('Telephone_SOS').doc(req.params.id)
 
@@ -448,6 +449,7 @@ app.put('/api/updateTelephone/:id', (req, res) => {
         }
     })();
 });
+
 
 //************* Delete */
 app.delete('/api/deleteTelephone/:id', (req, res) => {
@@ -522,6 +524,7 @@ app.get('/api/readUsers', (req, res) => {
 //************* Update */
 app.put('/api/updateUsers/:id', (req, res) => {
     (async () => {
+        console.log('Update ทำงาน')
         try {
             const document = db.collection('Users').doc(req.params.id)
 

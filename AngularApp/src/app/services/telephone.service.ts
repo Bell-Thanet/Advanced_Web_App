@@ -24,17 +24,18 @@ export class TelephoneService {
   }
 
 
-  addItem(item:ItemTelephone) {
+  addItem(item: ItemTelephone) {
     console.log(item)
     return this.http.post<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/createTelephone', item)
   }
 
   deleteItem(item: any) {
-  console.log(item)
-  return this.http.delete<any>('http://localhost:5001/sutcanhelp/us-central1/app//api/deleteTelephone'+`/${item}`)
+    console.log(item)
+    return this.http.delete<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/deleteTelephone/${item}`)
   }
 
-  updateItem(item: ItemTelephone) {
-   
+  updateItem(item: any) {
+    console.log(item)
+    return this.http.put<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/updateTelephone/${item.id}`, item)
   }
 }

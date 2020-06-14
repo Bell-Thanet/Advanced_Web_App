@@ -36,7 +36,11 @@ export class TelephoneComponent implements OnInit {
   }
 
   updateItem(item: ItemTelephone) {
-    this.item.updateItem(item);
+    this.item.updateItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
     this.clearState();
   }
 
