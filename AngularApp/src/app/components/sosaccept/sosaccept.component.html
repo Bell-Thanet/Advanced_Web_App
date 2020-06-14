@@ -1,0 +1,33 @@
+<div class="table-responsive-md">  
+    <table class="table table-striped table-inverse">
+        <thead class="thead-inverse">
+            <tr>
+                <th>อาการ</th>
+                <th>รูปที่1</th>
+                <th>รูปที่2</th>
+                <th>รูปที่3</th>
+                
+                <th>ลบข้อมูล</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let items of item1">
+                <td scope="row">{{items.Symtom}}</td>
+                <td *ngIf="items.Image1!=null"><img [src]="items.Image1" width="100" class="img-thumbnail" alt="Your Image"></td>
+                <td *ngIf="items.Image1==null">ไม่มีรูปภาพ</td>
+                <td *ngIf="items.Image2!=null"><img [src]="items.Image2" width="100" class="img-thumbnail" alt="Your Image"></td>
+                <td *ngIf="items.Image2==null">ไม่มีรูปภาพ</td>
+                <td *ngIf="items.Image3!=null"><img [src]="items.Image3" width="100" class="img-thumbnail" alt="Your Image"></td>
+                <td *ngIf="items.Image3==null">ไม่มีรูปภาพ</td>
+                
+                <td><button (click)="deleteItem($event, items)" class="fa fa-trash-o"></button>
+                </td>
+                
+                
+        </tbody>
+    </table> 
+    
+    
+    </div>

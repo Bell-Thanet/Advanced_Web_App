@@ -278,9 +278,11 @@ app.put('/api/updateAnimalList/:id', (req, res) => {
     })();
 });
 
+
 //************* Delete */
 app.delete('/api/deleteAnimalList/:id', (req, res) => {
     (async () => {
+        console.log(req.params.id)
         try {
             const document = db.collection('AnimalList').doc(req.params.id)
             await document.delete();
@@ -381,6 +383,7 @@ app.delete('/api/deleteInstitute/:id', (req, res) => {
 
 app.post('/api/createTelephone', (req, res) => {
     (async () => {
+        console.log('ทำงาน')
         try {
             await db.collection('Telephone_SOS').doc()
                 .create({
@@ -446,6 +449,7 @@ app.put('/api/updateTelephone/:id', (req, res) => {
 //************* Delete */
 app.delete('/api/deleteTelephone/:id', (req, res) => {
     (async () => {
+        console.log('delete ทำงาน')
         try {
             const document = db.collection('Telephone_SOS').doc(req.params.id)
             await document.delete();
@@ -729,6 +733,7 @@ app.get('/api/readAcceptSOS', (req, res) => {
                         Image1: doc.data().Image1,
                         Image2: doc.data().Image2,
                         Image3: doc.data().Image3,
+                        Symtom:doc.data().Symtom
                     }
                     response.push(selectedItem);
                 }

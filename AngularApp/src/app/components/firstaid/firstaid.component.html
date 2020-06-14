@@ -1,0 +1,29 @@
+<app-add-firstaid></app-add-firstaid>
+<div *ngIf="items?.length > 0;else noItems">
+    <div class="card" *ngFor="let item of items" class="collection">
+        <h5 class="card-header d-flex justify-content-between">{{item.Title}} <button (click)="deleteItem($event, item)" type="button"
+                class="btn btn-outline-danger">Delete</button></h5>
+
+        <div class="card-body row d-flex align-items-center">
+            <div>
+                <img src={{item.Image}} width="200" height="200">
+            </div>
+            <div class="col">
+                <div *ngFor="let a of item.detal; let i = index" class="collection-item">
+                    <strong>ขั้นตอนที่{{i+1}}</strong> : {{a}} &nbsp;<p></p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+
+</div>
+
+<ng-template #noItems>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>

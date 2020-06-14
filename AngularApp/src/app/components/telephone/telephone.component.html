@@ -1,0 +1,66 @@
+<app-add-telephone></app-add-telephone>
+
+<div *ngIf="items?.length > 0;else noItems">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">รายชื่อสายด่วนเหตุฉุกเฉิน</th>
+                <th scope="col">เบอร์สายด่วน</th>
+                <th scope="col">แก้ไข</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of items; let i = index" class="collection">
+
+                <th scope="row">{{i+1}}</th>
+                <td>
+                    <div>
+                        {{item.Title}}
+                    </div>
+                    <div class="h-25 d-inline-block" *ngIf="editStatus && itemToEdit.id == item.id">
+                        <input type="text" class="form-control" placeholder="Add Title" aria-label="Username"
+                            aria-describedby="basic-addon1" [(ngModel)]="item.Title" name="Title">
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        {{item.phonenumber}}
+                    </div>
+
+                    <div class="h-25 d-inline-block" *ngIf="editStatus && itemToEdit.id == item.id">
+                        <input type="text" class="form-control" placeholder="Add phonenumber" aria-label="Username"
+                            aria-describedby="basic-addon1" [(ngModel)]="item.phonenumber" name="phonenumber">
+                    </div>
+                </td>
+
+                <td scope="col">
+                    <div *ngIf="editStatus && itemToEdit.id == item.id">
+
+                        <button (click)="updateItem(item)" type="button" class="btn btn-outline-primary">Update</button>
+                        &nbsp;
+                        <button (click)="deleteItem($event, item.id)" type="button"
+                            class="btn btn-outline-danger">Delete</button>&nbsp;
+                        <button type="button" class="btn btn-outline-dark" (click)="clearState()">ปิด</button>
+                    </div>
+
+                    <div *ngIf="!editStatus">
+                        <button type="button" class="btn btn-outline-warning" (click)="editItem($event,item)"
+                            data-toggle="modal" data-target="#myModal">แก้ไข</button>&nbsp;
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<ng-template #noItems>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+</ng-template>

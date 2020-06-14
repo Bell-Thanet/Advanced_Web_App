@@ -14,7 +14,7 @@ export class PublicmenuComponent implements OnInit {
   }
 
   toTelephone_SOS() {
-    this.router.navigate(['/publicMenu/telephone_SOS']);
+    this.router.navigate(['/publicMenu/telephone']);
   }
 
   Institute() {
@@ -22,17 +22,17 @@ export class PublicmenuComponent implements OnInit {
   }
 
   animal() {
-    this.router.navigate(['publicMenu/animalList']);
+    this.router.navigate(['publicMenu/animal']);
   }
   soslist() {
-    this.router.navigate(['publicMenu/soslist']);
+    this.router.navigate(['publicMenu/sos']);
   }
 
   First_Aid() {
-    this.router.navigate(['publicMenu/First_Aidlist']);
+    this.router.navigate(['publicMenu/firstAid']);
   }
   User() {
-    this.router.navigate(['publicMenu/User']);
+    this.router.navigate(['publicMenu/user']);
   }
 
 }
