@@ -25,7 +25,7 @@ export class InstituteComponent implements OnInit {
     this.clearState();
     this.item.deleteItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Delete institute successfully')
       }
     );
 
@@ -39,7 +39,7 @@ export class InstituteComponent implements OnInit {
   updateItem(item: Iteminstitute) {
     this.item.updateItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Update institute successfully')
       }
     );
     this.clearState();

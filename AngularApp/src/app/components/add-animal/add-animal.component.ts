@@ -19,7 +19,7 @@ export class AddAnimalComponent implements OnInit {
     if (this.item.animalList != '') {
       this.additem.addItem(this.item).subscribe(
         data => {
-          alert('Create your account successfully')
+          alert('Add animal successfully')
         }
       );
 

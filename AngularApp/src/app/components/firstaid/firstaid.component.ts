@@ -24,7 +24,7 @@ export class FirstaidComponent implements OnInit {
     this.clearState();
     this.item.deleteItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Delete firstaid successfully')
       }
     );
 

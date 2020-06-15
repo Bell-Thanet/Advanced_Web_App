@@ -25,7 +25,7 @@ export class AddInstituteComponent implements OnInit {
       console.log(this.item)
       this.additem.addItem(this.item).subscribe(
         data => {
-          alert('Create your account successfully')
+          alert('Add institute successfully')
         }
       );
       this.item.institute = '';

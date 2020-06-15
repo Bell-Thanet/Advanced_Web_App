@@ -20,7 +20,7 @@ export class AddSosComponent implements OnInit {
     if (this.item.sosList != '') {
       this.additem.addItem(this.item).subscribe(
         data => {
-          alert('Create your account successfully')
+          alert('Add sos successfully')
         }
       );
       this.item.sosList = '';

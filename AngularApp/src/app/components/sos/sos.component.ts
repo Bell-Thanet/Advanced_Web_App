@@ -25,7 +25,7 @@ export class SosComponent implements OnInit {
     this.clearState();
     this.item.deleteItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Delete sos successfully')
       }
     );
 
@@ -39,7 +39,7 @@ export class SosComponent implements OnInit {
   updateItem(item: Itemsoslist) {
     this.item.updateItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Update sos successfully')
       }
     );
     this.clearState();

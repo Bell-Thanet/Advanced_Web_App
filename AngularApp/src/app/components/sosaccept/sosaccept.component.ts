@@ -24,7 +24,7 @@ export class SosacceptComponent implements OnInit {
     console.log(item)
     this.item.deleteItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Delete sosaccept successfully')
       })
   }
 

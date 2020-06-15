@@ -29,7 +29,7 @@ export class TelephoneComponent implements OnInit {
 
     this.item.deleteItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Delete telephone successfully')
       }
     );
 
@@ -44,7 +44,7 @@ export class TelephoneComponent implements OnInit {
   updateItem(item: ItemTelephone) {
     this.item.updateItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Update telephone successfully')
       }
     );
     this.clearState();

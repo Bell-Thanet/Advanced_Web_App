@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
   updateItem(item: ItemUser) {
     this.item.updateItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Update User successfully')
       }
     );
     this.clearState();

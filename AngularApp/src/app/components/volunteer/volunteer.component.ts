@@ -29,7 +29,7 @@ export class VolunteerComponent implements OnInit {
   updateItem(item: Volunteer) {
     this.item.updateItem(item).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('Update Volunteer successfully')
       }
     );
     this.clearState();

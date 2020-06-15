@@ -29,13 +29,13 @@ export class AddFirstaidComponent implements OnInit {
     console.log('********************1');
 
     if (
-      // this.item.Image == '' || this.item.ImagePath == '' || 
+      this.item.Image == '' || this.item.ImagePath == '' || 
       this.item.Title == '' || this.item.detal.length == 0) {
       alert('ใส่ข้อมูลไม่ครบ')
     } else {
       this.additem.addItem(this.item).subscribe(
         data => {
-          alert('Create your account successfully')
+          alert('Add firstaid successfully')
         }
       );
       this.item.Image = '';

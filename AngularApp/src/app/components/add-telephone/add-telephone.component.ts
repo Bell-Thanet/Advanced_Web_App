@@ -39,7 +39,7 @@ export class AddTelephoneComponent implements OnInit {
       this.item.phonenumber = this.newitem.value.newphonenumber;
       this.additem.addItem(this.item).subscribe(
         data => {
-          alert('Create your account successfully')
+          alert('Add telephone successfully')
         }
       );
       // console.log(this.item.Title + '  ' + this.item.phonenumber);
