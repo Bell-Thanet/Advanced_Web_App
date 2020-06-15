@@ -11,7 +11,7 @@ export class FirstaidComponent implements OnInit {
   items: ItemFirstAid[];
   editStatus: boolean = false;
   itemToEdit: ItemFirstAid;
-  constructor(private item:FirstaidService) { }
+  constructor(private item: FirstaidService) { }
 
   ngOnInit(): void {
     this.item.getItem().subscribe(items => {
@@ -22,7 +22,11 @@ export class FirstaidComponent implements OnInit {
 
   deleteItem($event, item: ItemFirstAid) {
     this.clearState();
-    this.item.deleteItem(item);
+    this.item.deleteItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
 
   }
 

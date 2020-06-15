@@ -29,6 +29,11 @@ import { VolunteerComponent } from './components/volunteer/volunteer.component';
 import { SosacceptComponent } from './components/sosaccept/sosaccept.component';
 import { StatisComponent } from './components/statis/statis.component'
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { environment } from 'src/environments/environment';
 // Routes
 export const router: Routes = [
 
@@ -66,9 +71,12 @@ export const router: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(router),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [AngularFireDatabase,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

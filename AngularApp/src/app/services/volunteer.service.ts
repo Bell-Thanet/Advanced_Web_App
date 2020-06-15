@@ -20,15 +20,9 @@ export class VolunteerService {
     }))
   }
 
-  addItem(item: Volunteer) {
-
-  }
-  
-  deleteItem(item: Volunteer) {
-
+  updateItem(item: any) {
+    console.log(item)
+    return this.http.put<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/updateVolunteers/${item.id}`, item)
   }
 
-  updateItem(item: Volunteer) {
-
-  }
 }

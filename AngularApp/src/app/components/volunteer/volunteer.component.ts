@@ -20,11 +20,6 @@ export class VolunteerComponent implements OnInit {
     })
   }
 
-  deleteItem($event, item: Volunteer) {
-    this.clearState();
-    this.item.deleteItem(item);
-
-  }
 
   editItem($event, item: Volunteer) {
     this.editStatus = true;
@@ -32,7 +27,11 @@ export class VolunteerComponent implements OnInit {
   }
 
   updateItem(item: Volunteer) {
-    this.item.updateItem(item);
+    this.item.updateItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
     this.clearState();
   }
 

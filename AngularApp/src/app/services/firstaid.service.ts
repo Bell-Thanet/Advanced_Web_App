@@ -23,7 +23,7 @@ export class FirstaidService {
 
   addItem(item: ItemFirstAid) {
     console.log(item)
-    return this.http.post<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/createFirst_Aidt', item)
+    return this.http.post<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/createFirst_Aid', item)
   }
 
   deleteItem(item: any) {

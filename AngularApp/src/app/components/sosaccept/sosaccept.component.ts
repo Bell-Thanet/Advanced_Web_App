@@ -19,21 +19,15 @@ export class SosacceptComponent implements OnInit {
       console.log(items);
     })
   }
-  deleteItem($event, item: Sosaccept) {
+  deleteItem($event, item: any) {
     this.clearState();
-    this.item.deleteItem(item);
-
+    console.log(item)
+    this.item.deleteItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      })
   }
 
-  editItem($event, item: Sosaccept) {
-    this.editStatus = true;
-    this.itemToEdit = item;
-  }
-
-  updateItem(item: Sosaccept) {
-    this.item.updateItem(item);
-    this.clearState();
-  }
 
   clearState() {
     this.editStatus = false;

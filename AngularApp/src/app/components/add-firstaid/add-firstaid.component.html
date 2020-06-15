@@ -1,1 +1,141 @@
-<p>add-firstaid works!</p>
+<div class="card d-flex justify-content-center">
+    <div class="card-header bg-dark text-white">
+        <div class="float-left">เพิ่มข้อมูล</div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">รูปภาพและหัวข้อ</h5>
+                        <input type="file" (change)="feature($event)">
+                        <p></p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">วิธีปฐมพยาบาล</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                [(ngModel)]="item.Title" name="Title" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ขั้นตอนการปฐมพยาบาล</h5>
+                        <div class="form-group">
+                            <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                [(ngModel)]="detalnew" name="detalnew"></textarea>
+                                
+                        </div>
+                        <p></p>
+                        <div class="d-flex justify-content-end">
+                            <button (click)="addtoarray()" type="button"
+                                class="btn btn-outline-success">AddItem</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">ลำดับการปฐมพยาบาล</h5>
+
+                <div *ngFor="let item of item.detal; let i = index" class="collection">
+                    <div class="font-weight-normal">
+                        <strong>ขั้นตอนที่{{i+1}}</strong> : {{item}} &nbsp;
+                        <button (click)="deleteItem($event, i)" type="button"
+                            class="btn btn-outline-danger">Delete</button>
+                    </div>
+                    <br>
+                </div>
+
+                <!-- <ul *ngFor="let item of item.detal; let i = index" class="collection">
+                    <li class="collection-item"><strong>{{item}} </strong> &nbsp;
+                        <button (click)="deleteItem($event, i)" class="btn red">Delete</button>
+                    </li>
+                </ul> -->
+                <div *ngIf="item.detal?.length>0" class="d-flex justify-content-end">
+                    <button (click)="addtodatabase()" type="button" class="btn btn-outline-success">Submit</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="row d-flex justify-content-center">
+            <div class="col-s">
+                <div>
+                    <h1>Photo</h1>
+                    <input type="file" (change)="feature($event)">
+                    <hr>
+                </div>
+                <div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">วิธีปฐมพยาบาล</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            [(ngModel)]="item.Title" name="Title" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-row">
+
+
+                    <div class="input-group mb-3 form-row">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">ขั้นตอนการปฐมพยาบาล</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Sizing example input" [(ngModel)]="detalnew"
+                            name="detalnew" aria-describedby="inputGroup-sizing-default">
+                        <button (click)="addtoarray()" type="button" class="btn btn-outline-success">AddItem</button>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <ul *ngFor="let item of item.detal; let i = index" class="collection">
+                        <li class="collection-item"><strong>{{item}} </strong> &nbsp;
+                            <button (click)="deleteItem($event, i)" class="btn red">Delete</button>
+
+
+                        </li>
+                    </ul>
+
+                    <button (click)="addtodatabase()" class="btn red">Submit</button>
+                </div>
+            </div>
+        </div> -->
+
+
+
+
+        <!-- <form (ngSubmit)="onSubmit()" class="col s6">
+
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <div class="col-sm">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">ชนิดสัตว์</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    [(ngModel)]="item.animalList" name="animalList"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-s">
+                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form> -->
+    </div>
+</div>
+<br> <br>

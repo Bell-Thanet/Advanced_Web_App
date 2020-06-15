@@ -1,7 +1,7 @@
 <app-add-firstaid></app-add-firstaid>
 <div *ngIf="items?.length > 0;else noItems">
     <div class="card" *ngFor="let item of items" class="collection">
-        <h5 class="card-header d-flex justify-content-between">{{item.Title}} <button (click)="deleteItem($event, item)" type="button"
+        <h5 class="card-header d-flex justify-content-between">{{item.Title}} <button (click)="deleteItem($event, item.id)" type="button"
                 class="btn btn-outline-danger">Delete</button></h5>
 
         <div class="card-body row d-flex align-items-center">

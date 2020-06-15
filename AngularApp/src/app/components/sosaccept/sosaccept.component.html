@@ -22,7 +22,7 @@
                 <td *ngIf="items.Image3!=null"><img [src]="items.Image3" width="100" class="img-thumbnail" alt="Your Image"></td>
                 <td *ngIf="items.Image3==null">ไม่มีรูปภาพ</td>
                 
-                <td><button (click)="deleteItem($event, items)" class="fa fa-trash-o"></button>
+                <td><button (click)="deleteItem($event, items.id)" class="fa fa-trash-o"></button>
                 </td>
                 
                 

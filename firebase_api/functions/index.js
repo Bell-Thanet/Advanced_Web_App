@@ -565,12 +565,13 @@ app.delete('/api/deleteUsers/:id', (req, res) => {
 app.post('/api/createFirst_Aid', (req, res) => {
     (async () => {
         try {
+            console.log('createFirst_Aid ทำงาน')
             await db.collection('First_Aid').doc()
                 .create({
-                    Email: req.body.Email,
-                    Name: req.body.Name,
-                    StudentID: req.body.StudentID,
-                    URL: req.body.URL,
+                    Image: req.body.Image,
+                    Title: req.body.Title,
+                    detal: req.body.detal,
+                    ImagePath:req.body.ImagePath
                 })
             return res.status(200).send();
         } catch (error) {
@@ -739,7 +740,7 @@ app.get('/api/readAcceptSOS', (req, res) => {
                         Image1: doc.data().Image1,
                         Image2: doc.data().Image2,
                         Image3: doc.data().Image3,
-                        Symtom:doc.data().Symtom
+                        Symtom: doc.data().Symtom
                     }
                     response.push(selectedItem);
                 }
@@ -770,7 +771,7 @@ app.delete('/api/deleteAcceptSOS/:id', (req, res) => {
 });
 
 // Register //
-app.post('/api/register',(req, res) => {
+app.post('/api/register', (req, res) => {
     (async () => {
         try {
             makeHash(req.body.password).then(hashtext => {
@@ -780,22 +781,22 @@ app.post('/api/register',(req, res) => {
                 }
                 console.log(playload);
                 db.collection('Admin').doc(req.body.email)
-                .create({
-                    Email: req.body.email,
-                    Password: hashtext,
-                    Firstname: req.body.firstName,
-                    LastName: req.body.lastName,
-                    StudentID: req.body.studentID,
-                })
+                    .create({
+                        Email: req.body.email,
+                        Password: hashtext,
+                        Firstname: req.body.firstName,
+                        LastName: req.body.lastName,
+                        StudentID: req.body.studentID,
+                    })
                 return res.status(200).send();
             })
-           
+
         } catch (error) {
             console.log(error)
             return res.status(500).send(error)
         }
     })();
-    
+
 });
 const makeHash = async (plainText) => {
     const result = await bcrypt.hash(plainText, 10);
@@ -805,7 +806,7 @@ const makeHash = async (plainText) => {
 //login//
 function findUser(username) {
     return db.collection('Admin').doc(username).get().then(function (doc) {
-        if (doc.exists) return Promise.resolve({username: doc.data().Email, password: doc.data().Password, firstname: doc.data().Firstname, lastname: doc.data().LastName});
+        if (doc.exists) return Promise.resolve({ username: doc.data().Email, password: doc.data().Password, firstname: doc.data().Firstname, lastname: doc.data().LastName });
         return Promise.reject("No such document");
     })
 }
@@ -820,31 +821,31 @@ const compareHash = async (plainText, hashText) => {
         });
     });
 }
-app.post('/api/login',(req, res) => {
+app.post('/api/login', (req, res) => {
     (async () => {
         const playload = {
             username: req.body.email,
             password: req.body.password,
         };
         console.log(playload);
-    try{
-        const result = await findUser(playload.username);
-        console.log(result);
-        const loginStatus = await compareHash(req.body.password, result.password)
-        console.log(loginStatus);
-        const status = loginStatus.status;
-        if (status) {
-            const token = jwt.sign(result, key, { expiresIn: 60 * 5 })
-            res.status(200).json({ result, token, status });
-        } else {
-            res.status(200).json({ status });
+        try {
+            const result = await findUser(playload.username);
+            console.log(result);
+            const loginStatus = await compareHash(req.body.password, result.password)
+            console.log(loginStatus);
+            const status = loginStatus.status;
+            if (status) {
+                const token = jwt.sign(result, key, { expiresIn: 60 * 5 })
+                res.status(200).json({ result, token, status });
+            } else {
+                res.status(200).json({ status });
+            }
+        } catch (error) {
+            res.status(404).send(error)
         }
-    } catch (error) {
-        res.status(404).send(error)
-    }
-    
+
     })();
-    
+
 });
 
 

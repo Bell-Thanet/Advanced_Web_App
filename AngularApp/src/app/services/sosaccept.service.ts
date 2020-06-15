@@ -19,15 +19,11 @@ export class SosacceptService {
     }))
   }
 
-  addItem(item: Sosaccept) {
 
-  }
   
-  deleteItem(item: Sosaccept) {
-
+  deleteItem(item: any) {
+    console.log(item)
+    return this.http.delete<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/deleteAcceptSOS/${item}`)
   }
-
-  updateItem(item: Sosaccept) {
-
-  }
+ 
 }
