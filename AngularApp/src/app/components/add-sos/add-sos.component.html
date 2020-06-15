@@ -1,1 +1,29 @@
-<p>add-sos works!</p>
+<div class="card">
+    <div class="card-header bg-dark text-white" >
+        <div class="float-left">เพิ่มข้อมูล</div>
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" class="col s6">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                    id="inputGroup-sizing-default">ประเภทอุบัติเหตุ</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                [(ngModel)]="item.sosList" name="sosList" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    
+                    <div class="col-s">
+                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br> <br>

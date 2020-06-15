@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Itemsoslist } from 'src/app/models/sos';
+import { SosService } from 'src/app/services/sos.service';
 
 @Component({
   selector: 'app-add-sos',
@@ -6,10 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-sos.component.css']
 })
 export class AddSosComponent implements OnInit {
-
-  constructor() { }
+  item: Itemsoslist = {
+    sosList: '',
+  }
+  constructor(private additem: SosService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    if (this.item.sosList != '') {
+      this.additem.addItem(this.item).subscribe(
+        data => {
+          alert('Create your account successfully')
+        }
+      );
+      this.item.sosList = '';
+
+      console.log(this.item.sosList);
+    } else {
+      alert('ใส่ข้อมูลไม่ครบ')
+    }
   }
 
 }

@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
   items: ItemUser[];
   editStatus: boolean = false;
   itemToEdit: ItemUser;
-  constructor(private item:UserService) { }
+  constructor(private item: UserService) { }
 
   ngOnInit(): void {
     this.item.getItem().subscribe(items => {
@@ -20,11 +20,15 @@ export class UserComponent implements OnInit {
     })
   }
 
-  deleteItem($event, item: ItemUser) {
-    this.clearState();
-    this.item.deleteItem(item);
+  // deleteItem($event, item: ItemUser) {
+  //   this.clearState();
+  //   this.item.deleteItem(item).subscribe(
+  //     data => {
+  //       alert('Create your account successfully')
+  //     }
+  //   );
 
-  }
+  // }
 
   editItem($event, item: ItemUser) {
     this.editStatus = true;
@@ -32,7 +36,11 @@ export class UserComponent implements OnInit {
   }
 
   updateItem(item: ItemUser) {
-    this.item.updateItem(item);
+    this.item.updateItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
     this.clearState();
   }
 

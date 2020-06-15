@@ -31,10 +31,10 @@ export class FirstaidComponent implements OnInit {
     this.itemToEdit = item;
   }
 
-  updateItem(item: ItemFirstAid) {
-    this.item.updateItem(item);
-    this.clearState();
-  }
+  // updateItem(item: ItemFirstAid) {
+  //   this.item.updateItem(item);
+  //   this.clearState();
+  // }
 
   clearState() {
     this.editStatus = false;

@@ -21,9 +21,13 @@ export class SosComponent implements OnInit {
   }
 
 
-  deleteItem($event, item: Itemsoslist) {
+  deleteItem($event, item: any) {
     this.clearState();
-    this.item.deleteItem(item);
+    this.item.deleteItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
 
   }
 
@@ -33,7 +37,11 @@ export class SosComponent implements OnInit {
   }
 
   updateItem(item: Itemsoslist) {
-    this.item.updateItem(item);
+    this.item.updateItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
     this.clearState();
   }
 

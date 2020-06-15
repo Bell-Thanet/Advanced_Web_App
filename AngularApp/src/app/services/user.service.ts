@@ -20,16 +20,13 @@ export class UserService {
     }))
   }
 
+  // deleteItem(item: any) {
+  //   console.log(item)
+  //   return this.http.delete<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/deleteUsers/${item}`)
+  // }
 
-  addItem(item: ItemUser) {
-   
-  }
-
-  deleteItem(item: ItemUser) {
-  
-  }
-
-  updateItem(item: ItemUser) {
-   
+  updateItem(item: any) {
+    console.log(item)
+    return this.http.put<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/updateUsers/${item.id}`, item)
   }
 }

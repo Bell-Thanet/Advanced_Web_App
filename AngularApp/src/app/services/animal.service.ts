@@ -22,17 +22,21 @@ export class AnimalService {
       return this.animalItem;
     }))
   }
-
-  deleteItem(id) {
-    console.log(id)
-    // return this.http.delete('http://localhost:5001/sutcanhelp/us-central1/app/api/deleteAnimalList/fcaUytQ37hYMng2aPin6')
-    return this.http.delete<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/deleteAnimalList/gjp2EXEnkMLCN5HCa8fD');
-
+  addItem(item: ItemAnimal) {
+    console.log(item)
+    return this.http.post<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/createAnimalList', item)
   }
 
-  updateItem(item: ItemAnimal) {
-
+  deleteItem(item: any) {
+    console.log(item)
+    return this.http.delete<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/deleteAnimalList/${item}`)
   }
+
+  updateItem(item: any) {
+    console.log(item)
+    return this.http.put<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/updateAnimalList/${item.id}`, item)
+  }
+
 
 
 }

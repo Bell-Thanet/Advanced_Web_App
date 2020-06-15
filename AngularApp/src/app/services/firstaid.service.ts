@@ -22,14 +22,12 @@ export class FirstaidService {
 
 
   addItem(item: ItemFirstAid) {
-   
+    console.log(item)
+    return this.http.post<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/createFirst_Aidt', item)
   }
 
-  deleteItem(item: ItemFirstAid) {
-  
-  }
-
-  updateItem(item: ItemFirstAid) {
-   
+  deleteItem(item: any) {
+    console.log(item)
+    return this.http.delete<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/deleteFirst_Aid/${item}`)
   }
 }

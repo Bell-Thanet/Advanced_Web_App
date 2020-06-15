@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemAnimal } from 'src/app/models/animal';
+import { AnimalService } from 'src/app/services/animal.service';
 
 @Component({
   selector: 'app-add-animal',
@@ -6,19 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-animal.component.css']
 })
 export class AddAnimalComponent implements OnInit {
-
-  constructor() { }
+  item: ItemAnimal = {
+    animalList: ''
+  }
+  constructor(private additem: AnimalService) { }
 
   ngOnInit(): void {
   }
   onSubmit() {
-    // if (this.item.animalList != '') {
-    //   this.additem.addItem(this.item);
-    //   this.item.animalList = '';
+    if (this.item.animalList != '') {
+      this.additem.addItem(this.item).subscribe(
+        data => {
+          alert('Create your account successfully')
+        }
+      );
 
-    //   console.log(this.item.animalList);
-    // } else {
-    //   alert('ใส่ข้อมูลไม่ครบ')
-    // }
+      this.item.animalList = '';
+
+      console.log(this.item.animalList);
+    } else {
+      alert('ใส่ข้อมูลไม่ครบ')
+    }
   }
 }

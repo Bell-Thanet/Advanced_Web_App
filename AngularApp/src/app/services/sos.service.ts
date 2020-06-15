@@ -22,14 +22,17 @@ export class SosService {
 
 
   addItem(item: Itemsoslist) {
-   
+    console.log(item)
+    return this.http.post<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/createSosList', item)
   }
 
-  deleteItem(item: Itemsoslist) {
-  
+  deleteItem(item: any) {
+    console.log(item)
+    return this.http.delete<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/deleteSosList/${item}`)
   }
 
-  updateItem(item: Itemsoslist) {
-   
+  updateItem(item: any) {
+    console.log(item)
+    return this.http.put<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/updateSosList/${item.id}`, item)
   }
 }

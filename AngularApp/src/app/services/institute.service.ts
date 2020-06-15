@@ -22,14 +22,17 @@ export class InstituteService {
   }
 
   addItem(item: Iteminstitute) {
-
-  }
-  
-  deleteItem(item: Iteminstitute) {
-
+    console.log(item)
+    return this.http.post<any>('http://localhost:5001/sutcanhelp/us-central1/app/api/createInstitute', item)
   }
 
-  updateItem(item: Iteminstitute) {
+  deleteItem(item: any) {
+    console.log(item)
+    return this.http.delete<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/deleteInstitute/${item}`)
+  }
 
+  updateItem(item: any) {
+    console.log(item)
+    return this.http.put<any>(`http://localhost:5001/sutcanhelp/us-central1/app/api/updateInstitute/${item.id}`, item)
   }
 }

@@ -24,7 +24,11 @@ export class AnimalComponent implements OnInit {
 
   deleteItem($event, id) {
     this.clearState();
-    this.item.deleteItem(id);
+    this.item.deleteItem(id).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
 
   }
 
@@ -34,7 +38,11 @@ export class AnimalComponent implements OnInit {
   }
 
   updateItem(item: ItemAnimal) {
-    this.item.updateItem(item);
+    this.item.updateItem(item).subscribe(
+      data => {
+        alert('Create your account successfully')
+      }
+    );
     this.clearState();
   }
 
