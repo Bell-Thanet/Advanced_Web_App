@@ -14,6 +14,7 @@ export class LoginService {
       if(data){
         this.local.set('user',data,1,'w');
         console.log(this.local.get('user'));
+        
       }
       return data;
     }))

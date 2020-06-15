@@ -7,20 +7,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      
       <ul class="navbar-nav mr-auto">
       </ul>
       <ul class="navbar-nav">
         <li>
-          <a class="nav-link" [routerLink]="['/']">หน้าแรก</a>
+          
+          <button style="margin-right: 10px;" *ngIf="status == 'Success'" class="btn btn-success" [routerLink]="['/menu']">Menu</button>
         </li>
+        <br>
         <li>
-          <a class="nav-link" [routerLink]="['/login']">เข้าสู่ระบบ</a>
-        </li>
-        <li>
-          <a class="nav-link" [routerLink]="['/register']">สมัครสมาชิก</a>
-        </li>
-        <li>
-          <button class="btn btn-primary" (click)="logout()">ออกจากระบบ</button>
+          <button *ngIf="status == 'Success'" class="btn btn-primary" (click)="logout()">ออกจากระบบ</button>
         </li>
       </ul>
     </div>

@@ -3,6 +3,7 @@ const admin = require('firebase-admin');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
+
 var serviceAccount = require("./permissions.json");
 
 const key = 'MY_KEY';
@@ -847,6 +848,41 @@ app.post('/api/login', (req, res) => {
     })();
 
 });
+
+//Token/////
+const authorization = ((req, res, next) => {
+    const token = req.headers['authorization'];
+    if (token === undefined) {
+        return res.status(401).json({
+            "status": 401,
+            "message": 'Unauthorized',
+        });
+    } else {
+        jwt.verify(token, key, (err, decode) => {
+            if (err) {
+                return res.status(401).json({
+                    "status": 401,
+                    "message": 'Unauthorized',
+                });
+            } else {
+                console.log(decode)
+                next()
+            }
+        })
+    }
+})
+
+
+
+app.get('/api/getlogin',authorization, (req, res) => {
+    console.log('Success');
+    res.status(200).json({
+        "status": 200,
+        "message": 'Success',
+    })
+})
+
+
 
 
 

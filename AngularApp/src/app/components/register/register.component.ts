@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register.service';
+import { NavbarhideService } from 'src/app/services/navbarhide.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,9 +19,10 @@ export class RegisterComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required]),
   });
 
-  constructor(private sign: RegisterService) { }
+  constructor(private sign: RegisterService, public nav: NavbarhideService) { }
 
   ngOnInit(): void {
+    this.nav.hide();
     
   }
 
@@ -28,10 +30,10 @@ export class RegisterComponent implements OnInit {
     console.log(this.profileForm.value);
     this.sign.signUp(this.profileForm.value).subscribe(
       data => {
-        alert('Create your account successfully')
+        alert('สมัครสมาชิกสำเร็จกรุณา Login เพื่อเข้าสู่ระบบ')
       }
     );
-   
+    this.profileForm.reset();
     }
 
   get email() {
