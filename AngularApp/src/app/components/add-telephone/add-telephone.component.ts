@@ -14,7 +14,7 @@ export class AddTelephoneComponent implements OnInit {
     phonenumber: ''
   }
   newitem = new FormGroup({
-    // Title: new FormControl('', [Validators.required]),
+    //Title: new FormControl('', [Validators.required]),
     newphonenumber: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern('^-?[0-9]\\d*(\\.\\d{1,2})?$')]),
 
   });
@@ -32,7 +32,7 @@ export class AddTelephoneComponent implements OnInit {
 
   onSubmit() {
 
-    if (this.newitem.value.newphonenumber != '' && this.newphonenumber.valid && this.newitem.value.Title != '') {
+    if (this.newitem.value.newphonenumber != '' && this.newphonenumber.valid && this.item.Title != '') {
 
 
 
